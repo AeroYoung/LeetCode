@@ -7,7 +7,7 @@ import java.util.Set;
 
 public class Solution {
 	
-	class ListNode {
+	static class ListNode {
 		int val;
 		ListNode next;
 		ListNode(int x) { val = x; }
@@ -18,6 +18,162 @@ public class Solution {
 	    TreeNode right;
 	    TreeNode(int x) { val = x; }
 	}
+	
+	/**No198.House Robber 取得数组中不相邻元素之和的可能最大值
+	 * https://leetcode.com/problems/house-robber/
+	 * 思路：递归
+	 * @param nums
+	 * @return
+	 */
+    public int rob(int[] nums) {
+    	if(nums.length==0) return 0;
+    	else if(nums.length==1) return nums[0];
+    	
+    	int[] haveRob = new int[nums.length];
+    	haveRob[0]=nums[0];
+    	haveRob[1]=Math.max(nums[0], nums[1]);
+    	for(int i=2;i<nums.length;i++){
+    		haveRob[i] = Math.max(haveRob[i-1], haveRob[i-2]+nums[i]);
+    	}
+    	
+    	return haveRob[nums.length-1];
+    }
+	
+	/**No27.Remove Element
+	 * 从数组中移除所有与val相同的元素
+	 * @param nums
+	 * @param val
+	 * @return 新数组的长度
+	 */
+    public int removeElement(int[] nums, int val) {
+        int n=0;
+        for(int i=0;i<nums.length;i++)
+        {
+          if(nums[i]!=val) nums[n++]=nums[i];
+        }
+        return n;
+    }
+	
+	/**No.Power of Two https://leetcode.com/problems/power-of-two/
+	 * 判断是否是2的幂
+	 * @param n
+	 * @return
+	 */
+    public boolean isPowerOfTwo(int n) {
+    	if(n==0) return false;
+    	while(n%2==0){
+    		n = n/2;
+    	}
+    	return n==1;
+    }
+	
+	/**No202.Happy Number https://leetcode.com/problems/happy-number/
+	 * Write an algorithm to determine if a number is "happy".
+	 * A happy number is a number defined by the following process: 
+	 * Starting with any positive integer, replace the number by the sum of the squares of its digits, 
+	 * and repeat the process until the number equals 1 (where it will stay), 
+	 * or it loops endlessly in a cycle which does not include 1. 
+	 * Those numbers for which this process ends in 1 are happy numbers.
+	    Example: 19 is a happy number		
+		1^2 + 9^2 = 82
+		8^2 + 2^2 = 68
+		6^2 + 8^2 = 100
+		1^2 + 0^2 + 0^2 = 1
+	 * @param n
+	 * @return
+	 */
+    public boolean isHappy(int n) {    	
+    	while(n>=10){
+    		int num = n;
+    		int m = 0;
+    		n=0;
+    		while(num!=0){
+    			m = num%10;
+    			n+=m*m;
+    			num = num/10;
+    		}
+    	}    
+        return n==1 || n==7;
+    }
+	
+	/**No263.判断一个数质因子只有2,3,5比如6,8就是,14不是;另外1是ugly number
+	 * Ugly Number  https://leetcode.com/problems/ugly-number/
+	 * @param num
+	 * @return
+	 */
+	public boolean isUgly(int num) {
+		if(num<2) return num==1;
+
+	      for(int i=2;i<6&&num>1;i++){
+	        while(num%i==0)
+	            num/=i;
+	      }  
+	      return num==1;
+    }
+	
+	/**No83.删除有序单向链表中的重复元素
+	 * Remove Duplicates from Sorted List https://leetcode.com/problems/remove-duplicates-from-sorted-list/
+	 * @param head
+	 * @return
+	 */
+	public ListNode deleteDuplicates(ListNode head) {
+		if(head == null || head.next == null) {
+	        return head;
+	    }
+	    ListNode i = head;
+	    ListNode j = head.next;
+	    while(j != null) {
+	        if(i.val == j.val){
+	            i.next = j.next;
+	            j = j.next;
+	        } else {
+	            i = i.next;
+	            j = j.next;
+	        }
+	    }
+	    return head;    
+    }
+	
+	/**No206.反转一个单向链表
+	 * Reverse Linked List https://leetcode.com/problems/reverse-linked-list/
+	 * @param head
+	 * @return
+	 */
+	public ListNode reverseList(ListNode head) {
+		if(head == null)    return head;
+        ListNode slow=null, mid=null, fast=head;
+        while(fast != null){
+            slow = mid;
+            mid = fast;            
+            fast = fast.next;
+            mid.next = slow;
+        }
+        return mid;       
+    }
+	/**No13.给一个罗马数字(eg,IX=9)转换为int
+	 * Roman to Integer https://leetcode.com/problems/roman-to-integer/
+	 * @param s
+	 * @return
+	 */
+	public int romanToInt(String s) {
+		if (s == null || s.length() == 0) {
+	        return 0;
+	    }
+	    int[] map = new int[26];
+	    map['I' - 'A'] = 1;
+	    map['V' - 'A'] = 5;
+	    map['X' - 'A'] = 10;
+	    map['L' - 'A'] = 50;
+	    map['C' - 'A'] = 100;
+	    map['D' - 'A'] = 500;
+	    map['M' - 'A'] = 1000;
+	    int sum = 0;
+	    for (int i = 0; i < s.length(); i++) {
+	        int cur = map[s.charAt(i) - 'A'];
+	        sum += cur - 2 * (sum % cur); //the easy formula
+	    }
+	    return sum;
+    }
 	
 	/**No191.将一个整数转化为32位二进制数，然后判断1的个数
 	 * Number of 1 Bits https://leetcode.com/problems/number-of-1-bits/
