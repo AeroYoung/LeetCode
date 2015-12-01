@@ -3,6 +3,7 @@ package com.aero.LeetCodeEassy.Main;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class Solution {
@@ -18,6 +19,57 @@ public class Solution {
 	    TreeNode right;
 	    TreeNode(int x) { val = x; }
 	}
+	
+	/**No118. 输入行数，返回一个杨辉三角形
+	 * 思路：第n行第m个数为排列组合C(n-1,m-1) = C(n-1,n-m)和第n-m-1个数相等
+	 * @param numRows
+	 * @return
+	 */
+    public List<List<Integer>> generate(int numRows) {
+    	
+    	List<List<Integer>> results = new ArrayList<List<Integer>>();
+
+    	for(int n=0;n<numRows;n++){
+    		List<Integer> nRow = new ArrayList<Integer>();
+    		int[] mNums = new int[n+1];
+    		
+    		for(int m=0;m<n/2+1;m++){
+        		long factN=1;
+        		long factM=1;
+        		for(int k=n;k>=n-m+1;k--){
+        			factN=factN*k;
+        		}    			
+    			for(int k=m;k>1;k--){
+    				factM=factM*k;
+    			}
+    			mNums[m]=(int) (factN/factM);
+    			mNums[n-m]=mNums[m];
+    		}
+    		for(int i=0;i<=n;i++){
+    			nRow.add(mNums[i]);
+    		}
+    		results.add(nRow);
+    	}
+    	
+		return results;       
+    }
+	
+	/**数字加一
+	 * No66.Plus one https://leetcode.com/problems/plus-one/
+	 * @param digits
+	 * @return
+	 */
+    public int[] plusOne(int[] digits) {
+		if(0==digits.length) return digits;
+		for(int i=digits.length-1;i>=0;i--)
+		{
+		   if(digits[i]!=9) {digits[i]++;return digits;}
+		   else digits[i]=0;
+		}
+       int[] result=new int[digits.length+1];
+       result[0]=1; //因为默认都是0
+       return result;   
+    }
 	
 	/**No198.House Robber 取得数组中不相邻元素之和的可能最大值
 	 * https://leetcode.com/problems/house-robber/

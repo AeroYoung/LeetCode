@@ -1,5 +1,8 @@
 # LeetCode
-##Introduction
-用Java写的LeetCode的答案，解答函数在Solution.java里，Main.java是主函数，其他的Java文件是按题设要求建立的类。
+##Java语言
+Main.java         : 主函数
+Solution.java     : 简单题目的答案
+SolutionHard.java : 难题的答案
+
 
 
