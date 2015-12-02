@@ -20,6 +20,71 @@ public class Solution {
 	    TreeNode(int x) { val = x; }
 	}
 	
+	/**No223.Rectangle Area
+	 * Find the total area covered by two rectilinear rectangles in a 2D plane.
+	 */
+    public int computeArea(int A, int B, int C, int D, int E, int F, int G, int H) {
+        
+    	int areaA = (C-A)*(D-B); 
+        int areaB = (G-E)*(H-F); 
+    	
+        int bottomX = Math.max(A, E); 
+        int bottomY = Math.max(B, F);
+        int topX = Math.min(C,G);
+        int topY = Math.min(D,H);
+
+        int overlap = 0; 
+        if(topX > bottomX && topY > bottomY) { 
+            overlap = (topX - bottomX) * (topY - bottomY);   
+        } 
+        
+    	return areaA+areaB-overlap;
+    }
+	
+	/**No9.Palindrome Number 判断一个整数是不是回文数字
+	 * 
+	 * @param x
+	 * @return
+	 */
+    public boolean isPalindrome(int x) {
+    	int original = x;
+    	int result = 0;
+    	
+    	while(x>0){
+    		result = result*10 + x%10;
+    		x/=10;
+    	}
+    	
+    	return original==result;
+    }
+	
+	/**No172.Factorial Trailing Zeroes:Given an integer n, return the number of trailing zeroes in n!.
+	 * n!作质因子分解，质因子2的个数多余5的个数，所以计算出n!中有多少个质因子5就可以了
+	 * @param n
+	 * @return
+	 */
+    public int trailingZeroes(int n) {
+    	int count = 0; 
+    	while (n > 1) {
+    	  count += n / 5;
+    	  n = n / 5; 
+    	}
+    	return count;       
+    }
+	
+	/**No119. Given an index k, return the kth row of the Pascal's triangle.
+	 * 
+	 * @param rowIndex
+	 * @return
+	 */
+    public List<Integer> getRow(int rowIndex) {
+        Integer dp[] = new Integer[rowIndex + 1];       
+        for (int i = 0; i < rowIndex + 1; i++) 
+            for (int j = i; j >= 0; j--) 
+                dp[j] = (j == 0 || j == i) ? 1 : (dp[j-1] + dp[j]);
+        return Arrays.asList(dp);
+    }
+	
 	/**No118. 输入行数，返回一个杨辉三角形
 	 * 思路：第n行第m个数为排列组合C(n-1,m-1) = C(n-1,n-m)和第n-m-1个数相等
 	 * @param numRows
