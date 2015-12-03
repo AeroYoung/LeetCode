@@ -5,6 +5,7 @@ import java.util.Arrays;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+import java.lang.Character;
 
 public class Solution {
 	
@@ -19,6 +20,51 @@ public class Solution {
 	    TreeNode right;
 	    TreeNode(int x) { val = x; }
 	}
+	
+    public boolean isPalindrome(String s) {
+    	if(s=="") return false;
+    	int i=0;
+    	int j=s.length()-1;
+    	char[] chs = s.toCharArray();
+    	
+    	while(i<j){
+    		while(!Character.isLetterOrDigit(chs[i])) {
+    			i++;
+    			if(i==j) return true;
+    		}
+    		while(!Character.isLetterOrDigit(chs[j])) {
+    			j--;
+    			if(i==j) return true;
+    		}
+    		
+    		if(Character.toLowerCase(chs[i])==Character.toLowerCase(chs[j])){
+    			i++;
+    			j--;
+    		} else {
+    			return false;
+    		}
+    	}
+    	
+    	return true;
+    }
+	
+	/**No7.reverse integer include negative-number eg:input -123 output -321
+	 * int可能溢出，如何解决?
+	 * @param x
+	 * @return
+	 */
+    public int reverse(int x) {
+        int result = 0;
+        if(x==0) return 0;
+        
+    	while(x!=0){
+    		if(Math.abs(result)> Integer.MAX_VALUE/10) return 0;
+    		result = result*10 + x%10;
+    		x/=10;
+    	}
+        
+        return result;
+    }
 	
 	/**No223.Rectangle Area
 	 * Find the total area covered by two rectilinear rectangles in a 2D plane.
