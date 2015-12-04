@@ -21,6 +21,51 @@ public class Solution {
 	    TreeNode(int x) { val = x; }
 	}
 	
+	/**No165.比较版本大小 2.37>2.5>1.1>0.1
+	 * 
+	 * @param version1
+	 * @param version2
+	 * @return version1>version2返回1，<返回-1，=返回0
+	 */
+    public int compareVersion(String version1, String version2) {
+    	while(version1.length()>0 || version2.length()>0) {
+    		int int1 = version1.length()>0?Integer.parseInt(version1.substring(0, version1.indexOf('.')>0?version1.indexOf('.'):version1.length())):0;
+        	int int2 = version2.length()>0?Integer.parseInt(version2.substring(0, version2.indexOf('.')>0?version2.indexOf('.'):version2.length())):0;
+        	if(int1>int2) return 1;
+        	else if(int2>int1) return -1;
+        	
+        	version1 = version1.indexOf('.')>0?version1.substring(version1.indexOf('.')+1):"";
+        	version2 = version2.indexOf('.')>0?version2.substring(version2.indexOf('.')+1):"";
+    	}
+    	
+    	return 0;
+    }
+	
+	/**No189.Rotate an array of n elements to the right by k steps.
+	 * https://leetcode.com/problems/rotate-array/
+	 * @param nums
+	 * @param k
+	 */
+	public void rotate(int[] nums, int k) {
+    	if(k<1) return;
+    	if(k>nums.length) k-=nums.length;
+    	int tail[] = new int[k];
+    	for(int i=0;i<k;i++){
+    		tail[i]=nums[nums.length-k+i];
+    	}
+    	for(int i=nums.length-1;i>k-1;i--){
+    		nums[i]=nums[i-k];
+    	}
+    	for(int i=0;i<k;i++){
+    		nums[i]=tail[i];
+    	}
+    }
+	
+	/**No125.判断是否是回文，忽略字符串中字母数字以外的符号
+	 * 
+	 * @param s
+	 * @return
+	 */
     public boolean isPalindrome(String s) {
     	if(s=="") return false;
     	int i=0;
