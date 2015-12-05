@@ -2,13 +2,22 @@ package com.aero.LeetCodeEassy.Main;
 
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
 import java.lang.Character;
 
 public class Solution {
 	
+	class Interval {
+		int start;
+		int end;
+		Interval() { start = 0; end = 0; }
+		public Interval(int s, int e) { start = s; end = e; }
+	}
 	static class ListNode {
 		int val;
 		ListNode next;
@@ -20,6 +29,20 @@ public class Solution {
 	    TreeNode right;
 	    TreeNode(int x) { val = x; }
 	}
+	
+	/**No136.Single Number I
+	 * 思路：位运算的交换律和结合律 http://www.cnblogs.com/wuyuegb2312/p/3254506.html
+	 * a^a=0 a^0=a a^b^a=a^a^b
+	 * @param nums
+	 * @return
+	 */
+    public int singleNumber(int[] nums) {
+    	int result = nums[0];
+    	for(int i=1;i<nums.length;i++) {
+    		result^=nums[i];
+    	}
+    	return result;
+    }
 	
 	/**No165.比较版本大小 2.37>2.5>1.1>0.1
 	 * 
@@ -563,6 +586,34 @@ public class Solution {
         int rightDepth = maxDepth(root.right);
 		return leftDepth>rightDepth?leftDepth+1:rightDepth+1;
     }
+
+	/**No.56 给一些区间的集合,合并重叠的区间
+	 * Merge Intervals https://leetcode.com/problems/merge-intervals/
+	 * @param intervals
+	 * @return
+	 */
+	public List<Interval> merge(List<Interval> intervals) {
+		 List<Interval> result = new ArrayList<>();
+		    Collections.sort(intervals, new IntervalComparator());
+		    if(intervals.size()==0){
+		        return result;
+		    }
+		    result.add(intervals.get(0));
+		    for(int index=1; index<intervals.size(); index++){
+		        if(intervals.get(index).start<=result.get(result.size()-1).end){
+		            result.get(result.size()-1).end=Math.max(intervals.get(index).end,result.get(result.size()-1).end);
+		        }
+		        else{
+		            result.add(intervals.get(index));
+		        }
+		    }
+		    return result;      
+    }	
+	class IntervalComparator implements Comparator<Interval> {
+	    public int compare(Interval o1, Interval o2){
+	        return o1.start-o2.start;
+	    }
+	}
 }
 
 
