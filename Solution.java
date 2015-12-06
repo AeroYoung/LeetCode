@@ -30,6 +30,30 @@ public class Solution {
 	    TreeNode(int x) { val = x; }
 	}
 	
+	/**No238.Product of Array Except Self
+	 * Return an array such that output[i] is equal to the product of all the elements of nums except nums[i].
+	 * @param nums An array of n integers where n > 1
+	 * @return
+	 */
+    public int[] productExceptSelf(int[] nums) {
+	 int len = nums.length;
+	    int [] output = new int[len];
+
+	    int leftMult = 1, rightMult = 1;
+
+	    for(int i = len-1; i >= 0; i--){
+	        output[i] = rightMult;
+	        rightMult *= nums[i];
+	    }
+	    for(int j = 0; j < len; j++){
+	        output[j] *= leftMult;
+	        leftMult *= nums[j];
+
+	    }
+
+	    return output;
+    }
+	
 	/**No136.Single Number I
 	 * 思路：位运算的交换律和结合律 http://www.cnblogs.com/wuyuegb2312/p/3254506.html
 	 * a^a=0 a^0=a a^b^a=a^a^b

@@ -1,8 +1,8 @@
 # [LeetCode](https://leetcode.com/problemset/algorithms/?cong=true "LeetCode")
 ##Java语言
 * Main.java         : 主函数
-* Solution.java     : 简单题目的答案
-* SolutionHard.java : 难题的答案
+* Solution.java     : 答案
+* 代码中序号和关键词，方便搜索和查找
 
 
 
