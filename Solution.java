@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -29,6 +30,49 @@ public class Solution {
 	    TreeNode right;
 	    TreeNode(int x) { val = x; }
 	}
+	
+	/**No2.Add Two Numbers
+	 * 
+	 * @param l1
+	 * @param l2
+	 * @return
+	 */
+    public ListNode addTwoNumbers(ListNode l1, ListNode l2) {
+		if(l1==null || l2==null) return null;
+    	
+    	return l1;        
+    }
+	
+	/**No1.Two Sum
+	 * https://leetcode.com/problems/two-sum/
+	 * @param nums
+	 * @param target
+	 * @return
+	 */
+    public int[] twoSum(int[] nums, int target) {
+        HashMap<Integer, Integer> map = new HashMap<Integer, Integer>();
+        int[] defaultResult = {0, 0};
+        for (int i = 0; i < nums.length; i++) {
+            if (map.get(target-nums[i]) != null ) {
+                int[] result = {map.get(target-nums[i]) + 1, i + 1 };
+                return result;
+            }
+            map.put(nums[i], i);
+        }
+        return defaultResult;      
+    }
+	
+	/**No58.Length of Last Word
+	 * 
+	 * @param s
+	 * @return
+	 */
+    public int lengthOfLastWord(String s) {
+    	if(s.length()==0) return 0;
+    	s=s.trim();
+    	String lastWord = s.lastIndexOf(' ')>-1?s.substring(s.lastIndexOf(' '),s.length()-1):s;
+    	return lastWord.length();
+    }
 	
 	/**No238.Product of Array Except Self
 	 * Return an array such that output[i] is equal to the product of all the elements of nums except nums[i].
