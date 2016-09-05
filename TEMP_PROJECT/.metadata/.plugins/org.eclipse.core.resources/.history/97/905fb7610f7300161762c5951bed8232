@@ -31,28 +31,6 @@ public class Solution {
 	    TreeNode(int x) { val = x; }
 	}
 	
-	/**No12.返回罗马数字，1~3999
-	 * 
-	 * @param num
-	 * @return
-	 */
-	public String intToRoman(int num) {
-        String result = "";
-        
-        String[][] roman = {
-			        		{"","I","II","III","IV","V","VI","VII","VIII","IX"},
-			                {"","X","XX","XXX","XL","L","LX","LXX","LXXX","XC"},
-			                {"","C","CC","CCC","CD","D","DC","DCC","DCCC","CM"},
-			                {"","M","MM","MMM"}};
-        
-        result+=roman[3][num/1000];
-        result+=roman[2][num/100%10];
-        result+=roman[1][num/10%10];
-        result+=roman[0][num%10];
-        
-        return result;
-    }
-	
 	/**No11. Container With Most Water 装最多的水！！
 	 * 
 	 * @param height
@@ -562,26 +540,26 @@ public class Solution {
 		
 		return ancestor; 
     }
-	/**
-	 * 找到节点路径
-	 * @param root
-	 * @param p
-	 * @param pathNodes 输出节点路径
-	 * @return
-	 */
-	boolean findNode(TreeNode root, TreeNode p,ArrayList<TreeNode> pathNodes) {		
-		if(root==null && p==null) {
-			pathNodes.add(root);
-			return true;
-		} else if(root==null || p==null) {
+		/**
+		 * 找到节点路径
+		 * @param root
+		 * @param p
+		 * @param pathNodes 输出节点路径
+		 * @return
+		 */
+		boolean findNode(TreeNode root, TreeNode p,ArrayList<TreeNode> pathNodes) {		
+			if(root==null && p==null) {
+				pathNodes.add(root);
+				return true;
+			} else if(root==null || p==null) {
+				return false;
+			}
+			if(root.val == p.val || findNode(root.left,p,pathNodes) || findNode(root.right,p,pathNodes)) {
+				pathNodes.add(root);
+				return true;
+			}		
 			return false;
 		}
-		if(root.val == p.val || findNode(root.left,p,pathNodes) || findNode(root.right,p,pathNodes)) {
-			pathNodes.add(root);
-			return true;
-		}		
-		return false;
-	}
 
 
 	/**给定两个字符串s和t，写一个函数，判断t是否是s的变位词。如果t跟s包含相同字符但排列顺序不同，则称t是s的变位词

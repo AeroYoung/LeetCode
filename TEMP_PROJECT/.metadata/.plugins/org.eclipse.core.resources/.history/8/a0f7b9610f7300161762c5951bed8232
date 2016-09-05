@@ -23,6 +23,6 @@ public class Main {
 		
 		//Solution
 		Solution solution = new Solution();	
-		System.out.println(solution.intToRoman(3422));
+		System.out.println(solution.maxArea(nums));
 	}
 }
