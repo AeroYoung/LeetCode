@@ -20,9 +20,9 @@ public class Main {
 		child5.next = null;
 		
 		int nums[] = {1,2,1};
-		
+		String str[] = {"filx","fly","fine"};
 		//Solution
 		Solution solution = new Solution();	
-		System.out.println(solution.intToRoman(3422));
+		System.out.println(solution.longestCommonPrefix(str));
 	}
 }

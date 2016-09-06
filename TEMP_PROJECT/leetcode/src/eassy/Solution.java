@@ -30,6 +30,96 @@ public class Solution {
 	    TreeNode right;
 	    TreeNode(int x) { val = x; }
 	}
+
+	public String longestCommonPrefix(String[] strs) {
+        if(strs.length==0) return "";
+		
+        String result = strs[0];
+        for(int i=1;i<strs.length;i++){
+        	
+        	int len = Math.min(result.length(), strs[i].length());
+        	result = result.substring(0,len);
+        	strs[i] = strs[i].substring(0, len);
+        	
+        	for(int j=0;j<len;j++){
+        		if(result.charAt(j)!=strs[i].charAt(j)){
+        			result = result.substring(0, j);
+        			break;
+        		}
+        	}
+        }
+        
+        return result;
+    }
+	
+	/**No.10 Regular Expression Matching
+	 * 
+	 * @param s
+	 * @param p
+	 * @return
+	 */
+	public boolean isMatch(String s, String p) {
+        if(s==p) return true;
+        
+        char preEle=' ';
+        while(p.length()>0 && s.length()>0)
+        {
+        	char sp = p.charAt(0);        	
+        	char ss = s.charAt(0);
+        	
+        	if(sp=='.'){        		
+        		preEle = sp;
+        		s = s.substring(1);
+        		p = p.substring(1);
+        		
+        	}else if(sp=='*'){
+        		if(preEle=='.') preEle=ss;
+        		int sl=s.length();
+        		for(int i=0;i<s.length();i++){
+        			if(s.charAt(i)!=preEle){
+        				sl = i;
+        				break;
+        			}
+        		}
+        		
+        		int pl=s.length();
+        		for(int i=1;i<p.length();i++){
+        			if(p.charAt(i)!=preEle){
+        				pl = i;
+        				break;
+        			}
+        		}
+        		
+        		s = s.substring(sl);
+        		p = p.substring(Math.min(sl, pl));
+        	}else{ //如果是字母
+        		if(sp==ss){
+        			preEle = sp;
+        			s = s.substring(1);
+            		p = p.substring(1);
+        			continue;
+        		}else{
+        			char sps = p.charAt(p.length()>1?1:0);
+        			if(sps!='*'){
+        				return false;
+        			}else{
+        				int l=s.length();
+                		for(int i=0;i<s.length();i++){
+                			if(s.charAt(i)!=sp){
+                				l = i;
+                				break;
+                			}
+                		}
+                		s = s.substring(l);
+                		p = p.substring(2);
+        			}
+        		}
+        	}
+        }
+        
+        if(p.length()==s.length())return true;
+        else return false;
+    }
 	
 	/**No12.返回罗马数字，1~3999
 	 * 
