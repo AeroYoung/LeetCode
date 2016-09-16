@@ -1,5 +1,7 @@
 package eassy;
 
+import java.util.Arrays;
+
 import eassy.Solution.ListNode;
 
 public class Main {
@@ -19,10 +21,10 @@ public class Main {
 		child4.next = child5;
 		child5.next = null;
 		
-		int nums[] = {1,2,1};
+		int nums[] = {-3,-2,-5,3,-4};
 		String str[] = {"filx","fly","fine"};
 		//Solution
-		Solution solution = new Solution();	
-		System.out.println(solution.longestCommonPrefix(str));
+		Solution solution = new Solution();	 
+		System.out.println(solution.threeSumClosest(nums,-1));
 	}
 }

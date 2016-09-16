@@ -10,6 +10,7 @@ import java.util.List;
 import java.util.Set;
 
 import java.lang.Character;
+import java.lang.reflect.Array;
 
 public class Solution {
 	
@@ -31,25 +32,48 @@ public class Solution {
 	    TreeNode(int x) { val = x; }
 	}
 
-	public String longestCommonPrefix(String[] strs) {
-        if(strs.length==0) return "";
-		
-        String result = strs[0];
-        for(int i=1;i<strs.length;i++){
-        	
-        	int len = Math.min(result.length(), strs[i].length());
-        	result = result.substring(0,len);
-        	strs[i] = strs[i].substring(0, len);
-        	
-        	for(int j=0;j<len;j++){
-        		if(result.charAt(j)!=strs[i].charAt(j)){
-        			result = result.substring(0, j);
-        			break;
-        		}
+	/**16. 3Sum Closest --> 15
+	 * You may assume that each input would have exactly one solution
+	 * @param nums
+	 * @param target
+	 * @return
+	 */
+	public int threeSumClosest(int[] nums, int target) {
+        Arrays.sort(nums);
+        int result = java.lang.Integer.MAX_VALUE-1;
+        for(int i=0;i<nums.length-2;i++){
+        	int left = i+1;
+        	int right = nums.length-1;
+        	while(left<right){
+        		int sum = nums[i]+nums[left]+nums[right];
+        		if(sum==target) return target;
+        		else if(sum>target) right -= 1;
+        		else left +=1;
+        		if(Math.abs(target-sum)<Math.abs(target-result))
+        			result = sum;
         	}
         }
         
-        return result;
+		return result;
+    }
+	
+	/**No.14 Longest Common Prefix
+	 * 
+	 * @param strs
+	 * @return
+	 */
+	public String longestCommonPrefix(String[] strs) {
+        if(strs.length==0) return "";
+		
+        String prefix = strs[0];
+        for(int i=1;i<strs.length;i++){
+        	while (strs[i].indexOf(prefix) != 0) {
+                prefix = prefix.substring(0, prefix.length() - 1);
+                if (prefix.isEmpty()) return "";
+            } 
+        }
+        
+        return prefix;
     }
 	
 	/**No.10 Regular Expression Matching
