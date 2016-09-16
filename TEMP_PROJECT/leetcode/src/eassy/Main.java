@@ -21,10 +21,9 @@ public class Main {
 		child4.next = child5;
 		child5.next = null;
 		
-		int nums[] = {-3,-2,-5,3,-4};
-		String str[] = {"filx","fly","fine"};
+		int nums[] = {-2,0,1,1,2};
 		//Solution
 		Solution solution = new Solution();	 
-		System.out.println(solution.threeSumClosest(nums,-1));
+		System.out.println(solution.threeSum(nums));
 	}
 }

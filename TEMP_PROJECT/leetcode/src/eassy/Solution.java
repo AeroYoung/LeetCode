@@ -32,7 +32,34 @@ public class Solution {
 	    TreeNode(int x) { val = x; }
 	}
 
-	/**16. 3Sum Closest --> 15
+	/**No15. 3Sum
+	 * 
+	 * @param nums
+	 * @return
+	 */
+	public List<List<Integer>> threeSum(int[] nums) {
+        List<List<Integer>> results = new ArrayList<List<Integer>>();        
+        Arrays.sort(nums);
+        for(int i=0;i<nums.length-2;i++){
+        	if(i>0 && nums[i]==nums[i-1]) continue;
+        	int left = i+1;
+        	int right = nums.length-1;
+        	while(left<right){
+        		int sum = nums[i]+nums[left]+nums[right];
+        		if(sum==0){
+        			Integer result[] = {nums[i],nums[left],nums[right]};
+        			results.add(Arrays.asList(result));
+        			
+        			while(++left<right && nums[left] ==nums[left-1]);
+        			while(left<--right && nums[right]==nums[right+1]);        			
+        		}else if(sum<0) ++left;
+        		else --right;
+        	}        	
+        }        
+        return results;
+    }
+	
+	/**No16. 3Sum Closest --> 15
 	 * You may assume that each input would have exactly one solution
 	 * @param nums
 	 * @param target
