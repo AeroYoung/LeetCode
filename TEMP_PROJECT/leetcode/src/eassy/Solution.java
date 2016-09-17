@@ -32,6 +32,39 @@ public class Solution {
 	    TreeNode(int x) { val = x; }
 	}
 
+	/**No18. 4Sum
+	 * 
+	 * @param nums
+	 * @param target
+	 * @return
+	 */
+	public List<List<Integer>> fourSum(int[] nums, int target) {
+		List<List<Integer>> results = new ArrayList<List<Integer>>();  
+		Arrays.sort(nums);
+		
+		for(int i=0;i<nums.length-3;i++){
+			if(i>0 && nums[i]==nums[i-1]) continue;
+			for(int j=i+1;j<nums.length-2;j++){
+				if(j>i+1 && nums[j]==nums[j-1]) continue;
+				int left = j+1;
+				int right = nums.length-1;
+				while(left<right){
+					int sum = nums[i]+nums[j]+nums[left]+nums[right]-target;
+					if(sum==0){
+	        			Integer result[] = {nums[i],nums[j],nums[left],nums[right]};
+	        			results.add(Arrays.asList(result));
+	        			
+	        			while(++left<right && nums[left] ==nums[left-1]);
+	        			while(left<--right && nums[right]==nums[right+1]);        			
+	        		}else if(sum<0) ++left;
+	        		else --right;
+				}
+			}
+		}
+		
+		return results;
+    }
+	
 	/**No15. 3Sum
 	 * 
 	 * @param nums

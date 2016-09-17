@@ -1,7 +1,5 @@
 package eassy;
 
-import java.util.Arrays;
-
 import eassy.Solution.ListNode;
 
 public class Main {
@@ -21,9 +19,10 @@ public class Main {
 		child4.next = child5;
 		child5.next = null;
 		
-		int nums[] = {-2,0,1,1,2};
+		//int nums[] = {-1,-5,-5,-3,2,5,0,4};
+		int nums[] = {0,0,0,0};
 		//Solution
 		Solution solution = new Solution();	 
-		System.out.println(solution.threeSum(nums));
+		System.out.println(solution.fourSum(nums,0));
 	}
 }
