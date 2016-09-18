@@ -60,8 +60,7 @@ public class Solution {
 	        		else --right;
 				}
 			}
-		}
-		
+		}		
 		return results;
     }
 	
