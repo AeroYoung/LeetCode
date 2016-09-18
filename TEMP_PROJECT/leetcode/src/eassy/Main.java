@@ -19,10 +19,10 @@ public class Main {
 		child4.next = child5;
 		child5.next = null;
 		
-		//int nums[] = {-1,-5,-5,-3,2,5,0,4};
-		int nums[] = {0,0,0,0};
+		int nums[] = {0,1,0,2,1,0,1,3,2,1,2,1};
+		//int nums[] = {0,0,0,0};
 		//Solution
 		Solution solution = new Solution();	 
-		System.out.println(solution.fourSum(nums,0));
+		System.out.println(solution.trap(nums));
 	}
 }

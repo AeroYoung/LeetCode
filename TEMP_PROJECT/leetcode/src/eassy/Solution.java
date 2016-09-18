@@ -32,6 +32,32 @@ public class Solution {
 	    TreeNode(int x) { val = x; }
 	}
 
+	/**No42. Trapping Rain Water
+	 * 
+	 * @param height
+	 * @return
+	 */
+	public int trap(int[] height) {
+        int result = 0;
+        if(height.length<3) return 0;
+        
+        int left = 0;
+        int right = height.length-1;        
+        
+        while(right>left){
+        	int min = Math.min(height[left], height[right]);
+        	if(height[left]==min)
+        		while(++left<right && height[left]<min)
+        			result+=min-height[left];
+        	else
+        		while(left<--right && height[right]<min)
+        			result+=min-height[right];
+        	        	
+        }
+        
+        return result;
+    }
+	
 	/**No18. 4Sum
 	 * 
 	 * @param nums
