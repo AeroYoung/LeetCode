@@ -7,6 +7,7 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 
 import java.lang.Character;
@@ -32,6 +33,31 @@ public class Solution {
 	    TreeNode(int x) { val = x; }
 	}
 
+	public int lengthOfLongestSubstring(String s) {
+        if(s.length()==1) return 1;
+        else if(s.length()==0) return 0;
+        
+		int i=0;
+		int j=1;
+		
+		Map map = new HashMap();
+		map.put(s.substring(0,1), "0");
+		
+		while(j<s.length())
+		{
+			String next = s.substring(j, j+1);
+			if(!map.containsKey(next)){
+				map.put(next, j);
+			}else{
+				i = Integer.parseInt(map.get(next).toString())+1;	
+				map.clear();
+				map.put(next, j);
+			}
+			j++;	
+		}
+		return j-i;
+    }
+	
 	/**No42. Trapping Rain Water
 	 * 
 	 * @param height

@@ -21,8 +21,8 @@ public class Main {
 		
 		int nums[] = {0,1,0,2,1,0,1,3,2,1,2,1};
 		//int nums[] = {0,0,0,0};
-		//Solution
+		String s = "abcabcbb";
 		Solution solution = new Solution();	 
-		System.out.println(solution.trap(nums));
+		System.out.println(solution.lengthOfLongestSubstring(s));
 	}
 }
