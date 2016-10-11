@@ -37,25 +37,26 @@ public class Solution {
         if(s.length()==1) return 1;
         else if(s.length()==0) return 0;
         
+        int result = 0;
 		int i=0;
 		int j=1;
 		
-		Map map = new HashMap();
-		map.put(s.substring(0,1), "0");
-		
 		while(j<s.length())
 		{
+			String subString = s.substring(i, j);
 			String next = s.substring(j, j+1);
-			if(!map.containsKey(next)){
-				map.put(next, j);
-			}else{
-				i = Integer.parseInt(map.get(next).toString())+1;	
-				map.clear();
-				map.put(next, j);
+			int index = subString.indexOf(next);
+			
+			if(index>=0){	
+				result = (j-i)>result?(j-i):result;
+				i = i+index+1;
+			}
+			else{
+				result = (j-i+1)>result?(j-i+1):result;
 			}
 			j++;	
 		}
-		return j-i;
+		return result;
     }
 	
 	/**No42. Trapping Rain Water
