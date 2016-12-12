@@ -47,3 +47,77 @@ At the and it is only valid if there was at least 1 number and if we did see an 
 So basically the number should match this regular expression:
 
 [-+]?(([0-9]+(.[0-9]*)?)|.[0-9]+)(e[-+]?[0-9]+)?
+
+```java
+
+public boolean isNumber(String s) {
+	s = s.trim();
+    
+    boolean pointSeen = false;
+    boolean eSeen = false;
+    boolean numberSeen = false;
+    boolean numberAfterE = true;
+    for(int i=0; i<s.length(); i++) {
+        if('0' <= s.charAt(i) && s.charAt(i) <= '9') {
+            numberSeen = true;
+            numberAfterE = true;
+        } else if(s.charAt(i) == '.') {
+            if(eSeen || pointSeen) {
+                return false;
+            }
+            pointSeen = true;
+        } else if(s.charAt(i) == 'e') {
+            if(eSeen || !numberSeen) {
+                return false;
+            }
+            numberAfterE = false;
+            eSeen = true;
+        } else if(s.charAt(i) == '-' || s.charAt(i) == '+') {
+            if(i != 0 && s.charAt(i-1) != 'e') {
+                return false;
+            }
+        } else {
+            return false;
+        }
+    }
+    
+    return numberSeen && numberAfterE;
+}
+
+```
+
+### [NoNo8. String to Integer (atoi)](https://leetcode.com/problems/string-to-integer-atoi/)
+
+```java
+
+public int myAtoi(String str) {
+	int index = 0, sign = 1, total = 0;
+    //1. Empty string
+    if(str.length() == 0) return 0;
+
+    //2. Remove Spaces
+    while(str.charAt(index) == ' ' && index < str.length())
+        index ++;
+
+    //3. Handle signs
+    if(str.charAt(index) == '+' || str.charAt(index) == '-'){
+        sign = str.charAt(index) == '+' ? 1 : -1;
+        index ++;
+    }
+    
+    //4. Convert number and avoid overflow
+    while(index < str.length()){
+        int digit = str.charAt(index) - '0';
+        if(digit < 0 || digit > 9) break;
+
+        //check if total will be overflow after 10 times and add digit
+        if(Integer.MAX_VALUE/10 < total || Integer.MAX_VALUE/10 == total && Integer.MAX_VALUE %10 < digit)
+            return sign == 1 ? Integer.MAX_VALUE : Integer.MIN_VALUE;
+
+        total = 10 * total + digit;
+        index ++;
+    }
+    return total * sign;
+}
+
+```

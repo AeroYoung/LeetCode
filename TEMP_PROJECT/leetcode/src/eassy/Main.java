@@ -21,8 +21,8 @@ public class Main {
 		
 		int nums[] = {0,1,0,2,1,0,1,3,2,1,2,1};
 		//int nums[] = {0,0,0,0};
-		String s = "0.15";
+		String s = "2147483648";
 		Solution solution = new Solution();	 
-		System.out.println(solution.isNumber(s));
+		System.out.println(solution.myAtoi(s));
 	}
 }
