@@ -4,34 +4,25 @@ import java.util.HashSet;
 import java.util.Set;
 
 import eassy.Solution.ListNode;
+import eassy.Solution.TreeNode;
 
 public class Main {
 
 	public static void main(String[] args) {		
 		//Initialization
-		ListNode head = new ListNode(0);
-		ListNode child1 = new ListNode(2);
-		ListNode child2 = new ListNode(2);
-		ListNode child3 = new ListNode(2);
-		ListNode child4 = new ListNode(3);
-		ListNode child5 = new ListNode(3);
-		head.next = child1;
-		child1.next = child2;
-		child2.next = child3;
-		child3.next = child4;
-		child4.next = child5;
-		child5.next = null;
+		TreeNode one = new TreeNode(1);
+		TreeNode two = new TreeNode(2);
+		TreeNode three = new TreeNode(3);
+		TreeNode four = new TreeNode(4);
+		TreeNode five = new TreeNode(5);
+		TreeNode six = new TreeNode(6);
+		one.left = two;
+		one.right = three;
+		two.right = five;
+		three.right = four;
+		five.right = six;
 		
-		int nums[] = {0,1,0,2,1,0,1,3,2,1,2,1};
-		String beginWord = "hit";
-		String endWord = "cog";
-		Set<String> wordList = new HashSet<String>();
-		wordList.add("hot");
-		wordList.add("dot");
-		wordList.add("dog");
-		wordList.add("lot");
-		wordList.add("log");
 		Solution solution = new Solution();	 
-		System.out.println(solution.ladderLength(beginWord,endWord,wordList));
+		System.out.println(solution.rightSideView(one));
 	}
 }

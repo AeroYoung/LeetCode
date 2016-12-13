@@ -8,6 +8,28 @@
 
 # LeetCode
 
+```java
+
+public List<Integer> rightSideView(TreeNode root) {
+	List<Integer> result = new ArrayList<Integer>();
+    if(root==null) return result;
+    Queue<TreeNode> q = new LinkedList<TreeNode>();
+    q.add(root);
+    while(q.size()>0){
+        int size = q.size();
+        for(int i=0;i<size;i++){
+            TreeNode node= q.poll();
+            if(i==size-1)
+                result.add(node.val);
+            if(node.left!=null) q.add(node.left);
+            if(node.right!=null) q.add(node.right);
+        }
+    }
+    return result;
+}
+
+```
+
 ### [No.127 Word Ladder](https://leetcode.com/problems/word-ladder/)
 > Given two words (beginWord and endWord), and a dictionary's word list, find the length of shortest transformation sequence from beginWord to endWord, such that:
 Only one letter can be changed at a time
@@ -76,9 +98,5 @@ public int ladderLength(String beginWord, String endWord, Set<String> wordList) 
 }
 
 ```
-
-### [No.126 Word Ladder II](https://leetcode.com/problems/word-ladder-ii/)
-
-和前面No.127差不多。
 
 

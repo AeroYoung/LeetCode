@@ -7,13 +7,17 @@ import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Iterator;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Queue;
 import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 import java.lang.Character;
 import java.lang.reflect.Array;
+
+
 
 public class Solution {
 	
@@ -28,11 +32,11 @@ public class Solution {
 		ListNode next;
 		ListNode(int x) { val = x; }
 	}
-	class TreeNode {
+	static class TreeNode {
 	    int val;
 	    TreeNode left;
 	    TreeNode right;
-	    TreeNode(int x) { val = x; }
+	    public TreeNode(int x) { val = x; }
 	}
 
 	public int lengthOfLongestSubstring(String s) {
@@ -59,6 +63,24 @@ public class Solution {
 			j++;	
 		}
 		return result;
+    }
+	
+	public List<Integer> rightSideView(TreeNode root) {
+		List<Integer> result = new ArrayList<Integer>();
+        if(root==null) return result;
+        Queue<TreeNode> q = new LinkedList<TreeNode>();
+        q.add(root);
+        while(q.size()>0){
+            int size = q.size();
+            for(int i=0;i<size;i++){
+                TreeNode node= q.poll();
+                if(i==size-1)
+                    result.add(node.val);
+                if(node.left!=null) q.add(node.left);
+                if(node.right!=null) q.add(node.right);
+            }
+        }
+        return result;
     }
 	
 	/**No.127 Word Ladder
