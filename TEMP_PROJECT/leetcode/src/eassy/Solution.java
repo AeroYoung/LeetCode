@@ -70,10 +70,8 @@ public class Solution {
 	 */
 	public int ladderLength(String beginWord, String endWord, Set<String> wordList) {
 		Set<String> beginSet = new HashSet<String>(), endSet = new HashSet<String>();
-
-		int len = 1;
-		int strLen = beginWord.length();
 		HashSet<String> visited = new HashSet<String>();
+		int len = 1;		
 		
 		beginSet.add(beginWord);
 		endSet.add(endWord);
