@@ -1,5 +1,8 @@
 package eassy;
 
+import java.util.HashSet;
+import java.util.Set;
+
 import eassy.Solution.ListNode;
 
 public class Main {
@@ -20,9 +23,15 @@ public class Main {
 		child5.next = null;
 		
 		int nums[] = {0,1,0,2,1,0,1,3,2,1,2,1};
-		//int nums[] = {0,0,0,0};
-		String s = "2147483648";
+		String beginWord = "hit";
+		String endWord = "cog";
+		Set<String> wordList = new HashSet<String>();
+		wordList.add("hot");
+		wordList.add("dot");
+		wordList.add("dog");
+		wordList.add("lot");
+		wordList.add("log");
 		Solution solution = new Solution();	 
-		System.out.println(solution.myAtoi(s));
+		System.out.println(solution.ladderLength(beginWord,endWord,wordList));
 	}
 }
