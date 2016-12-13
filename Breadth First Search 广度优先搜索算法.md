@@ -8,14 +8,15 @@
 
 # LeetCode
 
-## [No.199 Binary Tree Right Side View](https://leetcode.com/problems/binary-tree-right-side-view/)
+### [No.199 Binary Tree Right Side View](https://leetcode.com/problems/binary-tree-right-side-view/)
 
 这是一个典型的BFS问题，流程如下：
-1. 将顶点元素加入toVisit集合中
-2. 判断toVisit是否为空，否则3，是则6
+
+1. 将顶点元素加入toVisit集合中.
+2. 判断toVisit是否为空，否则3，是则6.
 3. 遍历toVisit当前元素并移除之。**若该元素是最后一个元素则加入结果集合(这个本题核心结果输出所特有)**
 4. 将当前元素和邻接元素加入toVisit。**本题特有顺序**
-5. 转入2
+5. 转入2.
 6. 返回结果
 
 ```java
