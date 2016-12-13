@@ -6,6 +6,7 @@
 ## 目录
 
 * [双指针算法](https://github.com/AeroYoung/LeetCode/blob/master/%E5%8F%8C%E6%8C%87%E9%92%88.md)——No15,No16,No18.
+* [Breadth-frist search](https://github.com/AeroYoung/LeetCode/blob/master/Breadth%20First%20Search%20%E5%B9%BF%E5%BA%A6%E4%BC%98%E5%85%88%E6%90%9C%E7%B4%A2%E7%AE%97%E6%B3%95.md)
 * [No.11Container With Most Water](https://github.com/AeroYoung/LeetCode/issues/1)
 * [No.14 Longest Common Prefix](https://github.com/AeroYoung/LeetCode/issues/2)
 
