@@ -13,35 +13,22 @@
 
 ### [No65. Valid Number](https://leetcode.com/problems/valid-number/)
 >Validate if a given string is numeric.
->
 >Some examples:
->
 >"0" => true
->
 >" 0.1 " => true
->
 >"abc" => false
->
 >"1 a" => false
->
 >"2e10" => true
->
 >**Note: **It is intended for the problem statement to be ambiguous. You should gather all requirements up front before implementing one. 
 
 先看看[java正则表达式](http://www.runoob.com/java/java-regular-expressions.html)
 
 We start with trimming.
-
 If we see [0-9] we reset the number flags.
-
 We can only see . if we didn't see e or ..
-
 We can only see e if we didn't see e but we did see a number. We reset numberAfterE flag.
-
 We can only see + and - in the beginning and after an e.
-
 any other character break the validation.
-
 At the and it is only valid if there was at least 1 number and if we did see an e then a number after it as well.
 
 So basically the number should match this regular expression:
@@ -91,7 +78,7 @@ public boolean isNumber(String s) {
 ```java
 
 public int myAtoi(String str) {
-	int index = 0, sign = 1, total = 0;
+    int index = 0, sign = 1, total = 0;
     //1. Empty string
     if(str.length() == 0) return 0;
 
@@ -121,3 +108,4 @@ public int myAtoi(String str) {
 }
 
 ```
+
